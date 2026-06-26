@@ -561,31 +561,32 @@ header.scrolled {
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
     gap: 6rem;
-    align-items: center;
-    max-width: 1300px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
+    align-items: start;   /* <-- change this */
 }
 
 .about-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
 }
 
 .image-wrapper {
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.about-img {
-    width: 100%;
-    max-width: 500px;
-    height: 600px;
-    object-fit: cover;
-    border-radius: 20px;
-    box-shadow: var(--shadow-card);
-    border: 3px solid var(--glass-border);
-    transition: var(--transition-smooth);
+.about-img{
+    width:100%;
+    max-width:420px;
+    aspect-ratio:3/4;
+    height:auto;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:var(--shadow-card);
+    border:3px solid var(--glass-border);
 }
 
 .about-img:hover {

@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Professions for typewriter effect
     const professions = [
-        'Full-Stack Developer',
+        'Java Full-Stack Developer',
         'Frontend Engineer', 
         'Backend Developer',
-        'Problem Solver',
-        'Tech Innovator'
+        'React.js Developer',
+        'Software Enginner'
     ];
 
     // Typewriter Effect
