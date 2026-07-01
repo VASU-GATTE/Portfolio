@@ -1,5 +1,5 @@
 // Enhanced JavaScript for Portfolio Website
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // DOM Elements
     const header = document.querySelector('header');
     const navbar = document.querySelector('.navbar');
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Professions for typewriter effect
     const professions = [
         'Java Full-Stack Developer',
-        'Frontend Engineer', 
+        'Frontend Engineer',
         'Backend Developer',
         'React.js Developer',
         'Software Enginner'
@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function typeWriter() {
         if (!heroSubtitle) return;
-        
+
         const currentProfession = professions[professionIndex];
-        
+
         if (isDeleting) {
             heroSubtitle.innerHTML = "I'm a " + currentProfession.substring(0, charIndex - 1) + '<span class="cursor">|</span>';
             charIndex--;
@@ -65,14 +65,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function smoothScroll(event) {
         event.preventDefault();
         const targetId = this.getAttribute('href');
-        
+
         if (targetId && targetId.startsWith('#')) {
             const targetElement = document.querySelector(targetId);
-            
+
             if (targetElement) {
                 const headerHeight = header?.offsetHeight || 80;
                 const offsetTop = targetElement.offsetTop - headerHeight;
-                
+
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll-based Header Effects
     function handleScroll() {
         const scrollY = window.scrollY;
-        
+
         if (scrollY > 50) {
             header?.classList.add('scrolled');
         } else {
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (activeSection) {
             const id = '#' + activeSection.getAttribute('id');
             updateActiveNavLink(id);
-            
+
             // Update URL hash
             if (history.pushState) {
                 history.pushState(null, null, id);
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
-                
+
                 // Add stagger effect for multiple elements
                 const siblings = entry.target.parentElement?.querySelectorAll('.animate-on-scroll');
                 if (siblings && siblings.length > 1) {
@@ -173,13 +173,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const animatedElements = document.querySelectorAll(
             '.hero-stats .stat, .about-highlights .highlight, .floating-card, .social-icon'
         );
-        
+
         animatedElements.forEach((el, index) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             el.style.transitionDelay = `${index * 0.1}s`;
-            
+
             animationObserver.observe(el);
         });
     }
@@ -192,14 +192,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const size = Math.max(rect.width, rect.height);
         const x = event.clientX - rect.left - size / 2;
         const y = event.clientY - rect.top - size / 2;
-        
+
         ripple.style.width = ripple.style.height = size + 'px';
         ripple.style.left = x + 'px';
         ripple.style.top = y + 'px';
         ripple.classList.add('ripple');
-        
+
         button.appendChild(ripple);
-        
+
         setTimeout(() => {
             ripple.remove();
         }, 600);
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <i class="fas fa-${type === 'info' ? 'info-circle' : 'check-circle'}"></i>
             <span>${message}</span>
         `;
-        
+
         // Add notification styles
         Object.assign(notification.style, {
             position: 'fixed',
@@ -246,14 +246,14 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: 'transform 0.3s ease',
             boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)'
         });
-        
+
         document.body.appendChild(notification);
-        
+
         // Animate in
         setTimeout(() => {
             notification.style.transform = 'translateX(0)';
         }, 100);
-        
+
         // Auto remove
         setTimeout(() => {
             notification.style.transform = 'translateX(100%)';
@@ -269,21 +269,21 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.key === 'Escape' && navMenu?.classList.contains('active')) {
             toggleMobileMenu();
         }
-        
+
         // Navigate with arrow keys when menu is open
         if (navMenu?.classList.contains('active') && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
             event.preventDefault();
             const currentActive = document.querySelector('.nav-link:focus') || document.querySelector('.nav-link.active');
             const navLinksArray = Array.from(navLinks);
             const currentIndex = navLinksArray.indexOf(currentActive);
-            
+
             let nextIndex;
             if (event.key === 'ArrowDown') {
                 nextIndex = (currentIndex + 1) % navLinksArray.length;
             } else {
                 nextIndex = currentIndex <= 0 ? navLinksArray.length - 1 : currentIndex - 1;
             }
-            
+
             navLinksArray[nextIndex]?.focus();
         }
     }
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function initializeActiveNav() {
         const hash = window.location.hash || '#home';
         updateActiveNavLink(hash);
-        
+
         // Smooth scroll to section if hash exists
         if (hash !== '#home') {
             setTimeout(() => {
@@ -353,11 +353,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Social icons hover effects
     socialIcons.forEach(icon => {
-        icon.addEventListener('mouseenter', function() {
+        icon.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-3px) scale(1.1)';
         });
-        
-        icon.addEventListener('mouseleave', function() {
+
+        icon.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0) scale(1)';
         });
     });
@@ -370,8 +370,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle clicks outside mobile menu
     document.addEventListener('click', (event) => {
-        if (navMenu?.classList.contains('active') && 
-            !navMenu.contains(event.target) && 
+        if (navMenu?.classList.contains('active') &&
+            !navMenu.contains(event.target) &&
             !hamburger?.contains(event.target)) {
             toggleMobileMenu();
         }
@@ -383,28 +383,28 @@ document.addEventListener('DOMContentLoaded', function() {
         if (heroSubtitle) {
             typeWriter();
         }
-        
+
         // Setup animations
         setupAnimations();
-        
+
         // Initialize navigation
         initializeActiveNav();
-        
+
         // Initial scroll check
         handleScroll();
-        
+
         // Add loaded class for CSS animations
         setTimeout(() => {
             document.body.classList.add('loaded');
         }, 100);
-        
+
         console.log('Portfolio website initialized successfully! 🚀');
     }
 
     // Contact form handling
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
             // Get form data
@@ -417,14 +417,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulate form submission (replace with actual API call)
-            console.log('Form submitted:', data);
+            const contactForm = document.getElementById("contactForm");
 
-            // Show success message
-            showNotification('Thank you for your message! I will get back to you soon.', 'success');
+            if (contactForm) {
 
-            // Reset form
-            this.reset();
+                contactForm.addEventListener("submit", function (e) {
+
+                    e.preventDefault();
+
+                    emailjs.sendForm(
+                        "service_j3h0qjp",
+                        "template_59sw7zc",
+                        this
+                    )
+                        .then(() => {
+
+                            showNotification(
+                                "Message sent successfully! I will contact you soon.",
+                                "success"
+                            );
+
+                            contactForm.reset();
+
+                        })
+                        .catch((error) => {
+
+                            console.error(error);
+
+                            showNotification(
+                                "Failed to send message. Please try again.",
+                                "error"
+                            );
+
+                        });
+
+                });
+
+            }
         });
     }
 
@@ -491,7 +520,7 @@ function debounce(func, wait) {
 
 function throttle(func, limit) {
     let inThrottle;
-    return function() {
+    return function () {
         const args = arguments;
         const context = this;
         if (!inThrottle) {
